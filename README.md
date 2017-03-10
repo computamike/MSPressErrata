@@ -8,3 +8,20 @@ An errata is vital when you are trying to learn a technology, and given the lack
 
 ### How it's going to work
 I'm suggesting that we create a document that would allow users to fork, add errata and re-submit it. 
+
+### So - What's the format?
+Well I only have Errata for 1 book (because that's the book I'm reading) but I've created a file based on the isbn number of the book.  That file contains : 
+
+* The Title,
+* The authors, 
+* A list of erata
+
+### How do I reference a section?
+Phyical books is fairly simple - use the page number and paragraph to identify areas where there are mistakes.  For Ebooks this is somewhat more complicated,  I've used the idea that the location should describe how to get to that location in your reader of choice.  So - for example : 
+
+3. Designing and implementing WCF Services > Objective 3.6: Version a WCF service> Objective review
+
+equates to :
+* Go to "3. Designing and implementing WCF Services" - you might be able to get there through your Table of Contents
+* Next - within that section look for "Objective 3.6: Version a WCF service"
+* Finally within that section look for "Objective review"
