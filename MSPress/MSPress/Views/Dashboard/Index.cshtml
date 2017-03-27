@@ -1,0 +1,28 @@
+﻿@model MSPress.Models.DashboardModel
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>DashboardModel</h4>
+    <hr />
+    
+    @Html.Partial("HighLight", @Model.Errata);
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ErrataCount)
+        </dt>
+         
+        <dd>
+            @Html.DisplayFor(model => model.ErrataCount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+ 
+</p>

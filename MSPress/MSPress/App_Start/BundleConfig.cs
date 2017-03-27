@@ -26,6 +26,33 @@ namespace MSPress
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/vendor_css").Include(
+                "~/vendor/bootstrap/css/bootstrap.min.css",
+                "~/vendor/metisMenu/metisMenu.min.css",
+                "~/vendor/morrisjs/morris.css",
+                "~/vendor/font-awesome/css/font-awesome.min.css"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/dist_css").Include(
+                "~/dist/css/sb-admin-2.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap_core_js").Include(
+               "~/vendor/bootstrap/js/bootstrap.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/metismenu_js").Include(
+               "~/vendor/metisMenu/metisMenu.min.js"));
+
+
+
+
+            bundles.Add(new ScriptBundle("~/bundles/dashboard_data_js").Include(
+                           "~/data/morris.data.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dashboard_dist_js").Include(
+                           "~/dist/js/sb-admin-2.js"));
+
         }
     }
 }
