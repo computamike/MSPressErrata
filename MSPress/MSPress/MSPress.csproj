@@ -207,6 +207,14 @@
     <Compile Include="Migrations\201703282203573_Initial Migration.Designer.cs">
       <DependentUpon>201703282203573_Initial Migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703292141305_FleshingOutErratumObject.cs" />
+    <Compile Include="Migrations\201703292141305_FleshingOutErratumObject.Designer.cs">
+      <DependentUpon>201703292141305_FleshingOutErratumObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703292154226_FleshingOutErratumObject_more.cs" />
+    <Compile Include="Migrations\201703292154226_FleshingOutErratumObject_more.Designer.cs">
+      <DependentUpon>201703292154226_FleshingOutErratumObject_more.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashboardModel.cs" />
@@ -449,6 +457,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703282203573_Initial Migration.resx">
       <DependentUpon>201703282203573_Initial Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703292141305_FleshingOutErratumObject.resx">
+      <DependentUpon>201703292141305_FleshingOutErratumObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703292154226_FleshingOutErratumObject_more.resx">
+      <DependentUpon>201703292154226_FleshingOutErratumObject_more.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

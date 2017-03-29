@@ -5,12 +5,25 @@ using System.Web;
 
 namespace MSPress.Models
 {
+
+    public enum Status
+    {
+        Pending,
+        Confirmed,
+        Fixed
+    }
+
     /// <summary>
     /// Basic Class detailing Errors in a book.
     /// </summary>
     public class Erratum
     {
         public int ID{ get; set; }
+        public virtual ApplicationUser Reporter { get; set; }
+        public Status Status { get; set; }
+        public int PageNumber { get; set; }
+        public string DescriptionOfError { get; set; }
+        public virtual Book Book { get; set; }
     }
 
     /// <summary>
