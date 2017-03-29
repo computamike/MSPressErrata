@@ -5,24 +5,41 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h2>View</h2>
-
 <div>
-    <h4>DashboardModel</h4>
-    <hr />
-    
-    @Html.Partial("HighLight", @Model.Errata);
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ErrataCount)
-        </dt>
-         
-        <dd>
-            @Html.DisplayFor(model => model.ErrataCount)
-        </dd>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
 
-    </dl>
-</div>
+    <div class="row">
+       @Html.Partial("HighLight", @Model.Errata)
+       @Html.Partial("HighLight", @Model.FlaggedItems)
+       @Html.Partial("HighLight", @Model.Users)
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>Support Tickets!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 <p>
  
 </p>

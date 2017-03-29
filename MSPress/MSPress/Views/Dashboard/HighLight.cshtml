@@ -1,25 +1,24 @@
 ﻿@model MSPress.Models.HighLight
-
 <div class="col-lg-3 col-md-6">
-<div class="panel @Html.DisplayFor(model => model.Colour)">
-    <div class="panel-heading">
-        <div class="row">
-            <div class="col-xs-3">
-                <i class="fa fa-comments fa-5x"></i>
-            </div>
-            <div class="col-xs-9 text-right">
-                <div class="huge">@Html.DisplayFor(model => model.Count)</div>
-                <div>@Html.DisplayFor(model => model.Title)</div>
+    <div class="panel @Html.DisplayFor(Model => Model.Colour)">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa @Html.DisplayFor(Model => Model.Glyph) fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@Html.DisplayFor(Model => Model.Count) </div>
+                    <div>@Html.DisplayFor(Model => Model.Title)</div>
+                </div>
             </div>
         </div>
+        
+        <a href='@Url.Action(Model.Details,"Dashboard")'>
+            <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
     </div>
-    <a href="#">
-        <div class="panel-footer">
-            <span class="pull-left">View Details</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
-        </div>
-    </a>
 </div>
-</div>
- 

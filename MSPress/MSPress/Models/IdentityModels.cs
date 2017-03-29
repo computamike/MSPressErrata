@@ -23,8 +23,11 @@ namespace MSPress.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+
         }
 
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Erratum> Errata { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

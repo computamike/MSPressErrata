@@ -1,0 +1,21 @@
+﻿@model MSPress.Models.Book
+<div class="row">
+<h4>@Html.DisplayFor(model => model.Title)</h4>
+</div>
+    <div class="row">
+        <div class="col-md-1 column"></div>
+        <div class="col-md-4 column">
+            <img style="width:100%" alt="MS Press Book Cover" src="@Html.DisplayFor(model => model.Image)">
+        </div>
+        <div class="col-md-6 column">
+            <h2 contenteditable="true">About</h2>
+            <p contenteditable="true">This is only a proof of concept store front.  Real book information would be displayed here.</p>
+                    
+        </div><div class="col-md-1 column"></div>
+    </div>
+
+Errors : @Model.BookErrata.Count();
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

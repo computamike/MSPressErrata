@@ -2,71 +2,49 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace MSPress.Controllers
 {
-    public class DashboardController : Controller
+    public class BooksController : Controller
     {
-        // GET: Dashboard
+        public BooksController()
+        {
+            db = new ApplicationDbContext();
+        }
+        public ApplicationDbContext db { get; set; }
+        // GET: Books
         public ActionResult Index()
         {
+            return View(db.Books.ToList());
 
-            DashboardModel m = new DashboardModel();
-            m.Errata = new HighLight()
-            {
-                Glyph = "fa-comments",
-                Colour = "panel-yellow",
-                Title = "Errata",
-                Count = 26,
-                Details = "Errata"
-            };
-
-            m.FlaggedItems = new HighLight()
-            {
-                Glyph = "fa-flag",
-                Colour = "panel-red",
-                Count = 12,
-                Title = "Flagged Items"
-
-            };
-
-            m.Users = new HighLight()
-            {
-                Glyph = "fa-user",
-                Colour = "panel-green",
-                Count = 12,
-                Title = "Users"
-            };
-
-            m.Users = new HighLight()
-            {
-                Glyph = "fa-question",
-                Colour = "panel-green",
-                Count = 3,
-                Title = "Questions"
-            };
-
-
-
-
-            return View(m);
         }
 
-        // GET: Dashboard/Details/5
-        public ActionResult Details(int id)
+        // GET: Books/Details/5
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(book);
         }
 
-        // GET: Dashboard/Create
+        // GET: Books/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Dashboard/Create
+        // POST: Books/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -82,13 +60,13 @@ namespace MSPress.Controllers
             }
         }
 
-        // GET: Dashboard/Edit/5
+        // GET: Books/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Dashboard/Edit/5
+        // POST: Books/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -104,13 +82,13 @@ namespace MSPress.Controllers
             }
         }
 
-        // GET: Dashboard/Delete/5
+        // GET: Books/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Dashboard/Delete/5
+        // POST: Books/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
