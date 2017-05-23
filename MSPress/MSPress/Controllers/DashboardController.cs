@@ -9,9 +9,16 @@ namespace MSPress.Controllers
 {
     public class DashboardController : Controller
     {
+        public ApplicationDbContext db { get; set; }
+        public DashboardController()
+        {
+            db = new ApplicationDbContext();
+        }
         // GET: Dashboard
         public ActionResult Index()
         {
+            var pendingErrata = db.Errata.Where(x => x.Status == Status.Pending).Count();
+            var flaggedErrata = 0;
 
             DashboardModel m = new DashboardModel();
             m.Errata = new HighLight()
@@ -19,15 +26,18 @@ namespace MSPress.Controllers
                 Glyph = "fa-comments",
                 Colour = "panel-yellow",
                 Title = "Errata",
-                Count = 26,
-                Details = "Errata"
+                Count = pendingErrata,
+                Details = "Index",
+                Controller = "Errata"
+       
+
             };
 
             m.FlaggedItems = new HighLight()
             {
                 Glyph = "fa-flag",
                 Colour = "panel-red",
-                Count = 12,
+                Count = flaggedErrata,
                 Title = "Flagged Items"
 
             };
@@ -53,6 +63,12 @@ namespace MSPress.Controllers
 
             return View(m);
         }
+
+        public ActionResult Errata()
+        {
+            return View(db.Errata.ToList());
+        }
+
 
         // GET: Dashboard/Details/5
         public ActionResult Details(int id)

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MSPress.Models.Erratum>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Book.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionOfError)
+        </th>
+        <th>@Html.DisplayNameFor(model => model.Reporter.UserName)</th>
+        <th>@Html.DisplayNameFor(model => model.Status)</th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Book.Title)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionOfError)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reporter.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            
+            <a href="#" class="approve" data-errata-id="@item.ID">approve</a>|
+            @Html.ActionLink("Flag", "ToggleFlag", new { id = item.ID })|
+
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

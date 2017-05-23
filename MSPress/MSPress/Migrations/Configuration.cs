@@ -33,54 +33,42 @@ namespace MSPress.Migrations
             // Create some sample users
 
             // Roles?
-
+            // Create some users.           
             context.Users.AddOrUpdate(u => u.UserName,
                 ConstructUser("computa_mike@hotmail.com", "password", "0123456789"),
                 ConstructUser("Sue@Sue.com", "password", "0123456789"),
                 ConstructUser("Steve@Steve.com", "password", "0123456789"),
                 ConstructUser("kim@kim.com", "password", "0123456789")
                 );
+            context.SaveChanges();
 
-            var Steve = context.Users.Where(x => x.Email == "Steve@Steve.com").First();
-
-            // Create some sample Data
-
-            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE Books");
-            //context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Books]', RESEED, 0);");
-
-            var nb = context.Books.Create();
-            nb.ID = 1;
-            nb.Title = "Exam Ref 70-743 Upgrading Your Skills to MCSA: Windows Server 2016 with Practice Test";
-            nb.Image = "https://www.microsoftpressstore.com/ShowCover.aspx?isbn=9781509303700";
-            nb.BookErrata = new System.Collections.Generic.List<Erratum>()
-            {
-                NewMethod(context, Steve, nb,12,"There is a typo in the third paragraph."),
-                NewMethod(context, Steve, nb,15,"The question options presented here do not match the answers in the answer section."),
-                NewMethod(context, Steve, nb,122,"This code example does not compile."),
-                NewMethod(context, Steve, nb,127,"This assertion is incorrect - the cast the author suggests can't be done can be done.")
-            };
-           
-            
+            // Create some sample Books
             context.Books.AddOrUpdate(x => x.ID,
-                nb,
+                new Book() { ID = 1, Title = "Exam Ref 70-743 Upgrading Your Skills to MCSA: Windows Server 2016 with Practice Test", Image = "https://www.microsoftpressstore.com/ShowCover.aspx?isbn=9781509303700" },
                 new Book() { ID = 2, Title = "Exam Ref 70-743 Upgrading Your Skills to MCSA: Windows Server 2016 with Practice Test", Image = "https://www.microsoftpressstore.com/ShowCover.aspx?isbn=9781509303700" },
                 new Book() { ID = 3, Title = "Exam Ref 70-740 Installation, Storage and Compute with Windows Server 2016", Image = "https://www.microsoftpressstore.com/ShowCover.aspx?isbn=9780735698826" });
-                      
+            context.SaveChanges();
 
+            
 
+            CreateError(context, "Steve@steve.com", 1,1,"Typo error - check spelling of yore.",1);
+
+            context.SaveChanges();
         }
 
-        private   Erratum  NewMethod(ApplicationDbContext context, ApplicationUser Steve, Book nb, int PageNumber,string Description)
+        private void CreateError(ApplicationDbContext context, string reporterEmail, int errataID,int bookId, string description, int pagenumber)
         {
-            var nb_errors = context.Errata.Create();
-            nb_errors.ID = 1;
-            nb_errors.Book = nb;
-            nb_errors.PageNumber = PageNumber;
-            nb_errors.DescriptionOfError = Description;
-            nb_errors.Status = Status.Pending;
-            nb_errors.Reporter = Steve;
-            return nb_errors;
+            var reporter = context.Users.SingleOrDefault(x => x.Email == reporterEmail);
+            var victimBook = context.Books.SingleOrDefault(x => x.ID == bookId);
+            context.SaveChanges();
+            context.Errata.AddOrUpdate(x=>x.ID,
+                new Erratum() {ID =errataID,  Status = Status.Pending, Book = victimBook, Reporter = reporter, DescriptionOfError = description, PageNumber = pagenumber });
+            context.SaveChanges();
         }
+
+
+
+ 
 
         /// <summary>
         /// Constructs a user.

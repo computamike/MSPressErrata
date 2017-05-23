@@ -44,9 +44,9 @@ namespace MSPress
             bundles.Add(new ScriptBundle("~/bundles/metismenu_js").Include(
                "~/vendor/metisMenu/metisMenu.min.js"));
 
-
-
-
+            bundles.Add(new ScriptBundle("~/bundles/errata_js").Include(
+                "~/Scripts/errata.js"));
+            
             bundles.Add(new ScriptBundle("~/bundles/dashboard_data_js").Include(
                            "~/data/morris.data.js"));
 

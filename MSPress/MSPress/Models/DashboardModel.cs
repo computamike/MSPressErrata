@@ -19,6 +19,7 @@ namespace MSPress.Models
         public string Colour { get; set; }
         public string Title{ get; set; }
         public int Count { get; set; }
+        public string Controller { get; set; }
         public string Details { get; set; }
     }
 }
